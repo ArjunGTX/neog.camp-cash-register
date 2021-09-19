@@ -34,12 +34,14 @@ function validateInput() {
     clearDenominations();
     let billAmount = billInput.value;
     let cashGiven = cashInput.value;
-    if(isNaN(billAmount) || isNaN(cashGiven)) {
+    if(!billAmount || !cashGiven) {
+        showError('I am not a magician to spawn a dove out of nowhere.Give me something to work with.');
+    } else if(isNaN(billAmount) || isNaN(cashGiven)) {
         showError('Are you from the parallel universe? cause people in this dimension are not capable of dealing with these amounts yet.');
     } else if(billAmount < 0 || cashGiven < 0) {
         showError('Am i a joke to you? How on earth did you end up with a negative amount?');
     } else if(Number(cashGiven) < Number(billAmount)) {
-        showError('We accept Kidneys too..');
+        showError("Nice try..! But that won't sell here.Pay the full amount.");
     } else {
         calcDenominations(billAmount,cashGiven);
     }
